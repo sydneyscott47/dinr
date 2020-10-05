@@ -11,8 +11,9 @@ export const CardItem = ({
 }) => {
   return (
     <View style={styles.containerCardItem}>
-      {/* IMAGE */}
+      {pic &&
       <Image source={pic} style={styles.image} />
+    }
 
       {/* NAME */}
       <Text style={styles.name}>{title}</Text>
@@ -57,12 +58,10 @@ const styles = StyleSheet.create({
     margin: 4,
   },
   description: {
-      width: Dimensions.get('window').width - 10,
+      width: Dimensions.get('window').width - 80,
   		color: 'gray',
   		textAlign: "center",
   		fontSize: 13,
-  		marginLeft: 1,
-      marginRight: 1
   	}
   }
 )

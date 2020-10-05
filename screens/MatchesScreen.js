@@ -24,7 +24,12 @@ const MatchesScreen = (props, { navigation }) => {
               <ListItem key={i}
               bottomDivider
               onPress={() => props.navigation.navigate('Profile',
-              {pic: user.pic, title: user.title, caption: user.caption, description: user.description})}>
+              {pic: user.pic,
+                picArray: user.picArray,
+                title: user.title,
+                caption: user.caption,
+                description: user.description
+                })}>
                 <Avatar
                 rounded
                 size="large"

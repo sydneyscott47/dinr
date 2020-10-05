@@ -19,9 +19,46 @@ function HomeScreen (props) {
           infinite
           backgroundColor="white"
           cardHorizontalMargin={0}
-          showSecondCard={false}
+          stackSize={1}
           verticalSwipe={false}
           onSwipedRight={(idx) => props.addMatch(HomeScreenPics[idx])}
+          overlayLabels={{
+            left: {
+              title: 'NOPE',
+              style: {
+                label: {
+                  backgroundColor: '#6495ED',
+                  borderColor: '#6495ED',
+                  color: 'white',
+                  borderWidth: 1
+                },
+                wrapper: {
+                  flexDirection: 'column',
+                  alignItems: 'flex-end',
+                  justifyContent: 'flex-start',
+                  marginTop: 30,
+                  marginLeft: -30
+                }
+              }
+            },
+            right: {
+              title: 'YUM',
+              style: {
+                label: {
+                  backgroundColor: '#6495ED',
+                  borderColor: '#6495ED',
+                  color: 'white',
+                  borderWidth: 1
+                },
+                wrapper: {
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                  marginTop: 30,
+                  marginRight: -30
+                }
+              }}
+            }}
         />
         <View style={styles.header}>
           <Ionicons name="md-person" size={24} color="#C8C8C8" margin={16}/>
@@ -63,6 +100,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     justifyContent: 'space-around'
+  },
+  overlayLabel: {
+    backgroundColor: 'black',
+    borderColor: 'black',
+    color: 'white',
+    borderWidth: 1
   }
 })
 

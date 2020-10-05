@@ -63,7 +63,7 @@ export default class App extends React.Component {
             }
           })}
           tabBarOptions={{
-            activeTintColor: 'blue',
+            activeTintColor: '#6495ED',
             inactiveTintColor: 'gray',
           }}>
               <Tab.Screen name="Browse" component={HomeScreen} />
