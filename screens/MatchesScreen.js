@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { clearMatches } from '../MatchesReducer';
-import { SafeAreaView, ScrollView, StyleSheet, Button, View, Text } from 'react-native'
-import { ListItem } from 'react-native-elements'
-import { Ionicons } from '@expo/vector-icons'
+import { clearMatches, deleteMatch } from '../MatchesReducer';
+import { SafeAreaView, ScrollView, StyleSheet, View, Text } from 'react-native'
+import { ListItem, Avatar, Button } from 'react-native-elements'
+import { Ionicons, Feather } from '@expo/vector-icons'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -13,24 +13,34 @@ const MatchesScreen = (props, { navigation }) => {
       <View style={styles.overall}>
         <SafeAreaView>
           <ScrollView>
+
             <View style={styles.container}>
               <Ionicons name="md-person" size={24} color="#C8C8C8" margin={16}/>
               <Text style={styles.welcome}>dinr</Text>
               <Ionicons name="md-person" size={24} color="white"/>
             </View>
+
             {props.matches.map((user, i) => (
-              <ListItem
-                key={i}
-                leftAvatar={{ source: user.pic, size: 'large' }}
-                title={user.title}
-                titleStyle={styles.title}
-                subtitle={user.tags}
-                subtitleStyle={styles.subtitle}
-                onPress={() => props.navigation.navigate('Profile', {pic: user.pic, title: user.title, tags: user.tags})}
-              />
+              <ListItem key={i}
+              bottomDivider
+              onPress={() => props.navigation.navigate('Profile',
+              {pic: user.pic, title: user.title, caption: user.caption, description: user.description})}>
+                <Avatar
+                rounded
+                size="large"
+                source={user.pic} />
+                <ListItem.Content>
+                  <ListItem.Title style={styles.title}>{user.title}</ListItem.Title>
+                  <ListItem.Subtitle style={styles.subtitle}>{user.tags}</ListItem.Subtitle>
+                </ListItem.Content>
+                <Feather name="delete" size={24} color="black" onPress={() => props.deleteMatch(user)}/>
+            </ListItem>
             ))}
+
+            {(props.matches.length > 0) ?
+              <Button title="Clear All" style={{margin: 10}} onPress={() => props.clearMatches()}/> :
+            <Text style={{fontSize: 24, color: '#3F3F3F', textAlign: 'center'}}>No matches yet. Get swipin'!</Text>}
           </ScrollView>
-          <Button title="Clear All" onPress={() => props.clearMatches()}/>
         </SafeAreaView>
       </View>
     )
@@ -44,6 +54,7 @@ const mapState = state => {
 const mapDispatch = dispatch => (
   bindActionCreators({
     clearMatches,
+    deleteMatch
   }, dispatch)
 );
 

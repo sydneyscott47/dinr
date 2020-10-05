@@ -23,10 +23,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: 'white'
   },
   imageContainer: {
+    marginTop: 5,
     width: Layout.window.width - 30,
-    height: Layout.window.height - BOTTOM_BAR_HEIGHT * 8,
+    height: Layout.window.height - BOTTOM_BAR_HEIGHT * 5,
     borderRadius: 20,
     overflow: 'hidden', // this does magic
   },

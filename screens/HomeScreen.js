@@ -5,6 +5,7 @@ import { addMatch } from '../MatchesReducer';
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native'
 import Swiper from 'react-native-deck-swiper'
 import { Card } from '../components/Card'
+import {CardItem} from '../components/AlternateCard'
 import { HomeScreenPics } from '../constants/Pics'
 import { Ionicons } from '@expo/vector-icons';
 
@@ -14,11 +15,11 @@ function HomeScreen (props) {
       <SafeAreaView style={styles.container}>
         <Swiper
           cards={HomeScreenPics}
-          renderCard={Card}
+          renderCard={CardItem}
           infinite
           backgroundColor="white"
           cardHorizontalMargin={0}
-          stackSize={2}
+          showSecondCard={false}
           verticalSwipe={false}
           onSwipedRight={(idx) => props.addMatch(HomeScreenPics[idx])}
         />
@@ -41,7 +42,6 @@ const mapDispatch = dispatch => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
     marginTop: 10
   },
   header: {
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
   },
   overall: {
     backgroundColor: 'white',
-    flex: 1
+    flex: 1,
+    justifyContent: 'space-around'
   }
 })
 

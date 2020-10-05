@@ -1,12 +1,14 @@
 import React from 'react'
-import { Image, SafeAreaView, StyleSheet, View, Button } from 'react-native'
-import { Divider, Icon, Text } from 'react-native-elements'
+import { Image, SafeAreaView, StyleSheet, View } from 'react-native'
+import { Divider, Icon, Text, Button } from 'react-native-elements'
 import Layout from '../constants/Layout'
 import { HomeScreenPics } from '../constants/Pics'
 import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack';
 
-const ProfileScreen = ({route}) => {
-    const { pic, title, tags } = route.params;
+const ProfileScreen = ({route, navigation}) => {
+    const { pic, title, caption, description } = route.params;
 
     return (
       <SafeAreaView style={styles.container}>
@@ -21,16 +23,11 @@ const ProfileScreen = ({route}) => {
         <Text h4 style={styles.name}>
           {title}
         </Text>
-        <Text style={styles.desc}>{tags}</Text>
+        <Text style={styles.desc}>{caption}</Text>
         <Divider style={styles.divider} />
-        <Text style={styles.desc}>
-          Here is a two-line desription of the restaurant.
-          See? Two lines.
-        </Text>
+        <Text style={styles.desc}>{description}</Text>
         <Divider style={styles.divider} />
-        <Text style={styles.desc}>
-          Hours:
-        </Text>
+        <Button title="Back to Matches" style={{margin: 10}}onPress={() => navigation.goBack()} />
       </SafeAreaView>
     )
 }
